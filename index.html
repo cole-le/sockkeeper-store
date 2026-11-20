@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Incredible Sockkeeper · No more lost socks (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#5A2A82;--purple-d:#3E1A5C;--gold:#F4C430;--ink:#1E1528;--body:#4B4356;--paper:#FBF8F3;--soft:#F1EBF6;--line:#E3DAEA}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 'Inter',Arial,sans-serif}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Archivo',Arial,sans-serif;letter-spacing:-.015em;margin:0}
+.proto{position:sticky;top:0;z-index:20;background:var(--ink);color:#F3ECFA;font-size:13px;text-align:center;padding:7px 16px}
+.proto b{color:var(--gold)}
+.ann{background:var(--purple);color:#fff;text-align:center;font:700 14px 'Archivo',Arial,sans-serif;letter-spacing:.06em;padding:9px 16px}
+.ann span{color:var(--gold)}
+header{border-bottom:1px solid var(--line);background:var(--paper)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font:900 22px/1 'Archivo',Arial,sans-serif;color:var(--purple);text-decoration:none}
+.logo small{display:block;font:700 11px 'Archivo',Arial,sans-serif;letter-spacing:.2em;color:var(--body)}
+nav{display:flex;gap:28px;font-weight:600;font-size:15px}
+nav a{text-decoration:none}
+.cart{font-weight:600;font-size:15px;border:1.5px solid var(--ink);border-radius:999px;padding:7px 16px;white-space:nowrap}
+.btn{display:inline-block;background:var(--gold);color:var(--purple-d);font:900 18px 'Archivo',Arial,sans-serif;padding:16px 30px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:56px 0 64px}
+.kick{font:800 13px 'Archivo',Arial,sans-serif;letter-spacing:.18em;color:var(--purple)}
+.hero h1{font-size:68px;line-height:1;margin:14px 0 18px}
+.hero p.lead{font-size:20px;color:var(--body);max-width:520px;margin:0 0 28px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero .facts{display:flex;gap:22px;margin-top:28px;font-size:14px;font-weight:600;color:var(--body);flex-wrap:wrap}
+.hero .facts span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:8px;vertical-align:middle}
+.hero .pic{border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:var(--soft)}
+.hero .pic img{width:100%;height:100%;object-fit:cover}
+section.block{padding:72px 0;border-top:1px solid var(--line)}
+section.block h2{font-size:44px;line-height:1.05;margin-bottom:12px}
+section.block .intro{color:var(--body);font-size:18px;max-width:640px;margin:0 0 36px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step img{border-radius:16px;aspect-ratio:1/1;object-fit:cover;width:100%}
+.step h3{font-size:22px;margin:16px 0 4px}
+.step h3 b{color:var(--purple);margin-right:8px}
+.step p{margin:0;color:var(--body)}
+.shop{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery img{border-radius:14px;aspect-ratio:1/1;object-fit:cover;width:100%;background:#fff}
+.gallery img:first-child{grid-column:1/3;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.packs{display:grid;gap:12px;margin:22px 0}
+.pack{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;border:2px solid var(--line);border-radius:16px;padding:16px 18px;background:#fff;cursor:pointer;position:relative}
+.pack input{accent-color:var(--purple);width:20px;height:20px}
+.pack.on{border-color:var(--purple);box-shadow:0 0 0 3px rgba(90,42,130,.12)}
+.pack .t{font:800 19px 'Archivo',Arial,sans-serif}
+.pack .s{font-size:14px;color:var(--body)}
+.pack .p{text-align:right;font:900 22px 'Archivo',Arial,sans-serif}
+.pack .p small{display:block;font:600 13px 'Inter',Arial,sans-serif;color:var(--purple)}
+.tag{position:absolute;top:-11px;right:16px;background:var(--gold);color:var(--purple-d);font:900 11px 'Archivo',Arial,sans-serif;letter-spacing:.1em;padding:4px 10px;border-radius:999px}
+.colors{display:flex;gap:10px;margin:6px 0 22px}
+.colors button{display:flex;align-items:center;gap:8px;border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:600 14px 'Inter',Arial,sans-serif;cursor:pointer}
+.colors button.on{border-color:var(--ink)}
+.colors i{width:16px;height:16px;border-radius:50%;display:inline-block}
+.label{font:800 13px 'Archivo',Arial,sans-serif;letter-spacing:.14em;color:var(--body)}
+.add{width:100%;font-size:20px;padding:18px}
+.note{font-size:13px;color:var(--body);margin-top:10px;text-align:center}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.why div{padding:22px 24px 6px 0}
+.why div+div{padding-left:24px;border-left:1px solid var(--line)}
+.why h3{font-size:22px;margin-bottom:6px}
+.why p{margin:0;color:var(--body)}
+.gift{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--purple);color:#fff;border-radius:24px;overflow:hidden}
+.gift img{width:100%;height:100%;object-fit:cover;min-height:420px}
+.gift .txt{padding:56px 48px;align-self:center}
+.gift .kick{color:var(--gold)}
+.gift h2{font-size:48px;line-height:1.02;margin:12px 0 14px;color:#fff}
+.gift p{color:#EADFF3;font-size:18px;margin:0 0 26px}
+.story{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center}
+.story img{border-radius:18px;width:280px;aspect-ratio:9/14;object-fit:cover}
+.story p{color:var(--body);font-size:18px;max-width:620px}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{font:800 19px 'Archivo',Arial,sans-serif;cursor:pointer;list-style:none}
+.faq summary::after{content:"+";float:right;color:var(--purple)}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--body);margin:10px 0 0;max-width:760px}
+footer{background:var(--ink);color:#CFC3DB;padding:48px 0;margin-top:72px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer b{color:#fff;font:900 18px 'Archivo',Arial,sans-serif}
+@media (max-width:900px){
+  nav{display:none}
+  .logo{font-size:19px}
+  .cart{font-size:14px;padding:6px 12px}
+  .hero{grid-template-columns:1fr;padding:28px 0 40px;gap:24px}
+  .hero h1{font-size:46px}
+  .hero .pic{aspect-ratio:1/1}
+  section.block{padding:52px 0}
+  section.block h2{font-size:34px}
+  .steps{grid-template-columns:1fr}
+  .shop{grid-template-columns:1fr}
+  .why{grid-template-columns:1fr}
+  .why div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .gift{grid-template-columns:1fr}
+  .gift img{min-height:300px}
+  .gift .txt{padding:32px 24px}
+  .gift h2{font-size:36px}
+  .story{grid-template-columns:1fr}
+  .story img{width:100%;max-width:280px}
+}
+</style>
+</head>
+<body>
+<div class="proto"><b>Prototype by James AI</b> for The Incredible Sockkeeper. Not live: nothing on this page sells or sends anything.</div>
+<div class="ann">FREE SHIPPING ON 3 PACKS OR MORE <span>·</span> MADE IN THE USA</div>
+<header><div class="wrap">
+  <a class="logo" href="#top">The Incredible Sockkeeper<small>NO MORE LOST SOCKS</small></a>
+  <nav><a href="#shop">Shop</a><a href="#how">How it works</a><a href="#gift">Gifts</a><a href="#story">Our story</a><a href="#faq">FAQ</a></nav>
+  <span class="cart">Cart (0)</span>
+</div></header>
+
+<main id="top" class="wrap">
+  <section class="hero">
+    <div>
+      <div class="kick">MADE IN THE USA</div>
+      <h1>No more lost socks.</h1>
+      <p class="lead">The Sockkeeper locks each pair together before the wash. Wash, dry, put away. It comes out a pair.</p>
+      <div class="ctas"><a class="btn" href="#shop">Shop the packs</a><a class="btn ghost" href="#how">See how it works</a></div>
+      <div class="facts"><span>8 clips a pack</span><span>Black, red or purple</span><span>Free shipping on 3+ packs</span></div>
+    </div>
+    <div class="pic"><img src="img/hero-laundry.jpg" alt="A pair of striped socks held together by a purple Sockkeeper clip on folded towels"></div>
+  </section>
+
+  <section class="block" id="how">
+    <h2>Three steps. Zero sock matching.</h2>
+    <p class="intro">Clip each pair when you take them off. They stay together through the washer and the dryer, and go straight into the drawer.</p>
+    <div class="steps">
+      <div class="step"><img src="img/snap.jpg" alt="Hands snapping a black Sockkeeper onto a pair of grey socks"><h3><b>1</b>Snap it on</h3><p>Close the clip over the tops of the pair. It takes a second.</p></div>
+      <div class="step"><img src="img/dryer.jpg" alt="A pair of navy socks still clipped together coming out of the dryer"><h3><b>2</b>Wash and dry</h3><p>Into the washer, into the dryer. The pair stays a pair.</p></div>
+      <div class="step"><img src="img/drawer.jpg" alt="A drawer of sock pairs, each held by a Sockkeeper"><h3><b>3</b>Into the drawer</h3><p>No pile, no matching. Unclip when you put them on.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="shop">
+    <div class="shop">
+      <div class="gallery">
+        <img src="img/clip-black.jpg" alt="The Sockkeeper clip in black, open and closed">
+        <img src="img/pack-purple.jpg" alt="A retail pack of purple Sockkeepers, made in USA">
+        <img src="img/pack-red.jpg" alt="A retail pack of red Sockkeepers, made in USA">
+      </div>
+      <div>
+        <div class="kick">THE INCREDIBLE SOCKKEEPER</div>
+        <h2 style="font-size:40px;margin:10px 0 6px">Pick your pack</h2>
+        <p style="color:var(--body);margin:0">Each pack has 8 clips: one for each pair. Bigger packs ship free.</p>
+        <div class="packs" id="packs">
+          <label class="pack"><input type="radio" name="pack" value="1"><div><div class="t">1 pack</div><div class="s">8 clips · 8 pairs</div></div><div class="p">$15.99<small>+ $5.75 shipping</small></div></label>
+          <label class="pack on"><span class="tag">MOST POPULAR</span><input type="radio" name="pack" value="3" checked><div><div class="t">3 packs</div><div class="s">24 clips · $15 a pack</div></div><div class="p">$44.99<small>Free shipping</small></div></label>
+          <label class="pack"><span class="tag">BEST VALUE</span><input type="radio" name="pack" value="5"><div><div class="t">5 packs</div><div class="s">40 clips · $13 a pack</div></div><div class="p">$64.99<small>Free shipping</small></div></label>
+        </div>
+        <div class="label">COLOR</div>
+        <div class="colors" id="colors">
+          <button class="on" type="button"><i style="background:#1d1d1f"></i>Black</button>
+          <button type="button"><i style="background:#B3202A"></i>Red</button>
+          <button type="button"><i style="background:#7B3FB0"></i>Purple</button>
+        </div>
+        <button class="btn add" type="button" id="add">Add 3 packs to cart · $44.99</button>
+        <p class="note" id="note">Secure checkout with Shop Pay, Apple Pay and cards once the store is live on Shopify.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Why the Sockkeeper</h2>
+    <p class="intro">There are cheap sock clips out there. This one is built to keep doing its job.</p>
+    <div class="why">
+      <div><h3>Made in the USA</h3><p>Made in America from durable polypropylene, built for wash after wash.</p></div>
+      <div><h3>Holds every kind of sock</h3><p>From thick wool hiking socks to thin dress socks and the kids’ smallest pairs.</p></div>
+      <div><h3>A color for everyone</h3><p>Black, red or purple. Give each person in the house their own color and sorting is done.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="gift">
+    <div class="gift">
+      <img src="img/stocking.jpg" alt="A Christmas stocking with socks clipped together by red, purple and black Sockkeepers">
+      <div class="txt">
+        <div class="kick">GIFTS UNDER $16</div>
+        <h2>Stocking stuffer, sorted.</h2>
+        <p>A useful gift that ends a chore everyone hates. Made in the USA, in three colors. Get 5 packs and fill every stocking in the house.</p>
+        <a class="btn" href="#shop">Shop gift packs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="story">
+    <div class="story">
+      <img src="img/founder.jpg" alt="Fernando Wright, founder, holding a Sockkeeper">
+      <div>
+        <div class="kick">OUR STORY</div>
+        <h2 style="margin:10px 0 14px">One clip. No more lost socks.</h2>
+        <p>Fernando Wright started The Incredible Sockkeeper in Louisville, Kentucky, to fix the oldest mystery in the laundry room: where the other sock goes. He designed a clip that holds a pair through the wash and the dryer, and had it made in the USA.</p>
+        <p>[Fernando’s own words go here: why he built it, and who he built it for.]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block faq" id="faq">
+    <h2>Questions</h2>
+    <details open><summary>How many clips are in a pack?</summary><p>Eight. One clip holds one pair, so a pack covers eight pairs.</p></details>
+    <details><summary>What does shipping cost?</summary><p>$5.75 on orders of 1 or 2 packs. Free on 3 packs or more.</p></details>
+    <details><summary>Will it damage my socks?</summary><p>It’s designed to hold everything from thick wool socks to delicate dress socks without damaging them.</p></details>
+    <details><summary>Where do orders ship from?</summary><p>Louisville, Kentucky.</p></details>
+    <details><summary>Do you sell to stores or for large orders?</summary><p>Yes. Write to us for wholesale or for special orders of 101 packs or more.</p></details>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <div><b>The Incredible Sockkeeper</b><br>No more lost socks. The Sockkeeper locks.</div>
+  <div>info@theincrediblesockkeeper.com<br>P.O. Box 16274, Louisville, KY 40256</div>
+  <div>© 2026 The Incredible Sockkeeper, LLC</div>
+</div></footer>
+
+<script>
+const packs = document.querySelectorAll('.pack');
+const price = { '1': '1 pack to cart · $15.99', '3': '3 packs to cart · $44.99', '5': '5 packs to cart · $64.99' };
+packs.forEach((p) => p.addEventListener('change', () => {
+  packs.forEach((q) => q.classList.toggle('on', q.querySelector('input').checked));
+  document.getElementById('add').textContent = 'Add ' + price[p.querySelector('input').value];
+}));
+document.querySelectorAll('#colors button').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('#colors button').forEach((c) => c.classList.toggle('on', c === b));
+}));
+document.getElementById('add').addEventListener('click', () => {
+  document.getElementById('note').textContent = 'Prototype: checkout opens on Shopify after setup. Nothing was added or charged.';
+});
+</script>
+</body>
+</html>
